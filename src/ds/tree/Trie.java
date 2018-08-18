@@ -5,41 +5,40 @@ public class Trie {
 	TrieNode trie;
 	static class TrieNode{
 		TrieNode [] arr;
-		TrieNode next;
+		
 		Boolean word;
 		TrieNode(){
 			arr = new TrieNode[26];
-			next=null;
+		
 			word=false;
 		}
 	}
 	
 	public void insertNode(String str){
 		TrieNode temp = trie;
-		int start=0;
-		for(int i=0;i<str.length();i++){
-			start=i;
-			if(temp.arr[str.charAt(i)-'a']!=null){
-				if(i==str.length()-1){
-					temp.word=true;
-				}else{
-					temp=temp.arr[str.charAt(i)-'a'].next;
-				}
-			}else{
-				break;
+		int n=str.length();
+		
+		for(int i=0;i<n;i++){
+			int index = str.charAt(i)-'a';
+			if(temp.arr[index]==null){
+				temp.arr[index]=new TrieNode();
 			}
+			temp=temp.arr[index];
 		}
-		if(start==str.length()-1 && temp.word){
-			return;
-		}
-		for(int i=start;i<str.length();i++){
-			
-			temp.arr[str.charAt(i)-'a']=new TrieNode();
-			if(i==str.length()-1){
-				temp.arr[str.charAt(i)-'a'].word=true;
+		temp.word=true;
+	}
+	public boolean search(String str){
+		TrieNode temp = trie;
+		int n=str.length();
+		
+		for(int i=0;i<n;i++){
+			int index = str.charAt(i)-'a';
+			if(temp.arr[index]==null){
+				return false;
 			}
-			temp=temp.arr[str.charAt(i)-'a'];
+			temp = temp.arr[index];
 		}
+		return (temp!=null && temp.word);
 	}
 	
 	public static void main(String[] args) {
@@ -47,6 +46,8 @@ public class Trie {
 		t.trie = new TrieNode();
 		t.insertNode("rajesh");
         t.insertNode("rajya");
+        System.out.println(t.search("rajesh"));
+        System.out.println(t.search("rajt"));
 	}
 
 }
