@@ -1,3 +1,14 @@
+
+/*
+*  Trie data structure implimentation using char array
+*
+*/
+
+
+
+
+
+
 package ds.tree;
 
 public class Trie {
