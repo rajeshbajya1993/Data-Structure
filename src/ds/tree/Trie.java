@@ -11,19 +11,19 @@ public class Trie {
 	TrieNode trie;
 	static class TrieNode{
 		TrieNode [] arr;
-		
+
 		Boolean word;
 		TrieNode(){
 			arr = new TrieNode[26];
-		
+
 			word=false;
 		}
 	}
-	
+
 	public void insertNode(String str){
 		TrieNode temp = trie;
 		int n=str.length();
-		
+
 		for(int i=0;i<n;i++){
 			int index = str.charAt(i)-'a';
 			if(temp.arr[index]==null){
@@ -36,7 +36,7 @@ public class Trie {
 	public boolean search(String str){
 		TrieNode temp = trie;
 		int n=str.length();
-		
+
 		for(int i=0;i<n;i++){
 			int index = str.charAt(i)-'a';
 			if(temp.arr[index]==null){
@@ -46,7 +46,11 @@ public class Trie {
 		}
 		return (temp!=null && temp.word);
 	}
-	
+
+	public void deleteWord(String str){
+		
+	}
+
 	public static void main(String[] args) {
 		Trie t = new Trie();
 		t.trie = new TrieNode();
