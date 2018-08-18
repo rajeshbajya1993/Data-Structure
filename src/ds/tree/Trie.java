@@ -1,13 +1,8 @@
 
 /*
-*  Trie data structure implimentation using char array
+*  Trie data structure implementation using char array
 *
 */
-
-
-
-
-
 
 package ds.tree;
 
