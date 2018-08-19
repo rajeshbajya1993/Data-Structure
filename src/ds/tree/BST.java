@@ -73,18 +73,29 @@ public class BST {
 		return root;
 		
 	}
-	public node greaterSumTree(node root){
+	public node constructGreaterSumTree(node root){
 		if(root==null)return null;
 		else{
-			root.right=greaterSumTree(root.right);
+			root.right=constructGreaterSumTree(root.right);
 			sum=sum+root.value;
 			root.value=sum-root.value;
-			root.left=greaterSumTree(root.left);
+			root.left=constructGreaterSumTree(root.left);
 			
 		}
 		return root;
 	}
   int sum=0;
+  
+  public node constructMinSumTree(node root){
+	  if(root==null){
+		  return null;
+	  }
+	  root.left=constructMinSumTree(root.left);
+	  sum=sum+root.value;
+	  root.value=sum-root.value;
+	  root.right=constructMinSumTree(root.right);
+	  return root;
+  }
 	public static void main(String[] args) {
 		BST bst = new BST();
 		node root=null;
@@ -103,7 +114,7 @@ public class BST {
 //		System.out.println();
 //		bst.inorderTraversal(root);
 		
-		root=bst.greaterSumTree(root);
+		root=bst.constructMinSumTree(root);
 		System.out.println();
 		bst.inorderTraversal(root);
 
