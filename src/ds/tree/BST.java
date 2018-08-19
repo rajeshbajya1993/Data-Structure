@@ -12,6 +12,11 @@ public class BST {
 			this.value=value;
 			
 		}
+		static node copyOf(node root){
+//			int value = root.value;
+			node temp = new node(root.value);
+			return temp;
+		}
 	}
 	
 	public node insertNode(int value,node root){
@@ -96,9 +101,20 @@ public class BST {
 	  root.right=constructMinSumTree(root.right);
 	  return root;
   }
+  
+  public void constructSortedLinkedListFromBST(node root){
+	  if(root==null){
+		  return ;
+	  }
+	  else{
+		  constructSortedLinkedListFromBST(root.left);
+		  
+	  }
+  }
 	public static void main(String[] args) {
 		BST bst = new BST();
 		node root=null;
+		node linkedList=null;
 		Random rand = new Random();
 		int [] arr = new int[10];
 		for(int i=0;i<4;i++){
@@ -113,12 +129,13 @@ public class BST {
 //		bst.deleteNodeFromBST(arr[4], root);
 //		System.out.println();
 //		bst.inorderTraversal(root);
+//		root=bst.constructMinSumTree(root);
 		
-		root=bst.constructMinSumTree(root);
 		System.out.println();
 		bst.inorderTraversal(root);
-
+        
           
 	}
+	
 
 }
