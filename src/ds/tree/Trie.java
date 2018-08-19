@@ -48,16 +48,18 @@ public class Trie {
 	}
 
 	public void deleteWord(String str){
-		
+
 	}
 
 	public static void main(String[] args) {
 		Trie t = new Trie();
 		t.trie = new TrieNode();
 		t.insertNode("rajesh");
-        t.insertNode("rajya");
+        t.insertNode("hello rajesh");
         System.out.println(t.search("rajesh"));
-        System.out.println(t.search("rajt"));
+        // System.out.println(t.search("rajt"));
+		System.out.println("hello rajesh");
+
 	}
 
 }
