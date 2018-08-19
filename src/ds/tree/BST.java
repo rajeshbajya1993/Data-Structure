@@ -101,14 +101,14 @@ public class BST {
 	  root.right=constructMinSumTree(root.right);
 	  return root;
   }
-  
+  node LinkedList;
   public void constructSortedLinkedListFromBST(node root){
 	  if(root==null){
 		  return ;
 	  }
 	  else{
-		  constructSortedLinkedListFromBST(root.left);
-		  
+		  constructSortedLinkedListFromBST(root.right);
+//		  LinkedList.r
 	  }
   }
 	public static void main(String[] args) {
