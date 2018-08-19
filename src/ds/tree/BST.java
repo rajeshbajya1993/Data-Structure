@@ -73,13 +73,24 @@ public class BST {
 		return root;
 		
 	}
-
+	public node greaterSumTree(node root){
+		if(root==null)return null;
+		else{
+			root.right=greaterSumTree(root.right);
+			sum=sum+root.value;
+			root.value=sum-root.value;
+			root.left=greaterSumTree(root.left);
+			
+		}
+		return root;
+	}
+  int sum=0;
 	public static void main(String[] args) {
 		BST bst = new BST();
 		node root=null;
 		Random rand = new Random();
 		int [] arr = new int[10];
-		for(int i=0;i<10;i++){
+		for(int i=0;i<4;i++){
 			 int n = rand.nextInt(100)+1;
 			 arr[i]=n;
 			 System.out.print(n+" ");
@@ -88,10 +99,13 @@ public class BST {
 		}
 		System.out.println();
 		bst.inorderTraversal(root);;
-		bst.deleteNodeFromBST(arr[4], root);
+//		bst.deleteNodeFromBST(arr[4], root);
+//		System.out.println();
+//		bst.inorderTraversal(root);
+		
+		root=bst.greaterSumTree(root);
 		System.out.println();
 		bst.inorderTraversal(root);
-		
 
           
 	}
