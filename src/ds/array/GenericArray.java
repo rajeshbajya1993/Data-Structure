@@ -14,6 +14,8 @@ public class GenericArray  {
 		public int compare(Integer o1, Integer o2) {
 			String s1=o1.toString();
 			String s2=o2.toString();
+			
+			//multiplied by -1 to sort list in descending order
 			return (Integer.parseInt(s1+s2)-Integer.parseInt(s2+s1))*-1;
 			
 		}
