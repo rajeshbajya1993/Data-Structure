@@ -21,6 +21,7 @@ public class GenericArray  {
 			String s2=o2.toString();
 			
 			//multiplied by -1 to sort list in descending order
+			// or return Integer.parseInt(s2+s1)-Integer.parseInt(s1+s2)
 			return (Integer.parseInt(s1+s2)-Integer.parseInt(s2+s1))*-1;
 			
 		}
