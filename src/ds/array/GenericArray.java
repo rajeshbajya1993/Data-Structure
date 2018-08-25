@@ -1,9 +1,14 @@
 package ds.array;
 
 import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Scanner;
 
 public class GenericArray  {
@@ -21,25 +26,85 @@ public class GenericArray  {
 		}
 		
 	}
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		int n = scan.nextInt();
+	public static void main(String[] args) throws ParseException {
+//		Scanner scan = new Scanner(System.in);
+//		int n = scan.nextInt();
 		GenericArray gc = new GenericArray();
-		List<Integer> list = new ArrayList<>();
-		for(int i=0;i<n;i++){
-			int k = scan.nextInt();
-			list.add(k);
-		}
-		System.out.println(list);
-		gc.sort1(n,list);
+//		List<Integer> list = new ArrayList<>();
+//		for(int i=0;i<n;i++){
+//			int k = scan.nextInt();
+//			list.add(k);
+//		}
+//		System.out.println(list);
+//		gc.sort1(n,list);
+		
+		 DateFormat df = new SimpleDateFormat("yyyy-MM-dd:");
+		 gc.getDateRangeUtil(df.parse("2018-08-19"), "");
+//		 Calendar cal = Calendar.getInstance();
+//	        cal.setTime(df.parse("2018-08-19"));
+//	        System.out.println(cal.get(Calendar.DAY_OF_WEEK));
+//		java.sql.Date db = ;
+//		db.v
 	}
 
-	private void sort1(int n, List<Integer> list) {
+	public void sort1(int n, List<Integer> list) {
 		
 		list.sort(new specialSorting());
 		System.out.println(list);
 	}
 
-	
+	public List<String> getDateRangeUtil(Date date,String view) {
+
+		
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        String startDate = "";
+        String endDate = "";
+        List<String> list = new ArrayList<String>();
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        
+
+        if("month".equals(view)){
+            
+            int weekOfMonth = cal.get(Calendar.WEEK_OF_MONTH);
+            int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+            cal.add(Calendar.DAY_OF_MONTH,-((weekOfMonth - 1) * 7 + (dayOfWeek-1)));
+            startDate = df.format(cal.getTime());
+            cal.add(Calendar.DAY_OF_MONTH, 34);
+            endDate = df.format(cal.getTime());
+
+        
+           
+        }
+        else if("week".equals(view)){
+            int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+            cal.add(Calendar.DAY_OF_MONTH,-(dayOfWeek-1));
+            startDate = df.format(cal.getTime());
+            cal.add(Calendar.DAY_OF_MONTH, 6);     
+            endDate = df.format(cal.getTime());
+            
+            
+        }else if("list".equals(view)){
+            startDate = df.format(cal.getTime());
+            cal.add(Calendar.DAY_OF_MONTH, 13);     
+            endDate = df.format(cal.getTime());
+        }
+        else {
+            //day view 
+        	// get data for two days instead
+            startDate = df.format(cal.getTime());
+            cal.add(Calendar.HOUR_OF_DAY, 24);  
+            endDate = df.format(cal.getTime());
+        }
+      
+
+        list.add(startDate);
+        list.add(endDate);
+       
+        return list;
+    }
+ 
 
 }
