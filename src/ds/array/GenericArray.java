@@ -39,13 +39,14 @@ public class GenericArray  {
 //		System.out.println(list);
 //		gc.sort1(n,list);
 		
-		 DateFormat df = new SimpleDateFormat("yyyy-MM-dd:");
+		 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		 gc.getDateRangeUtil(df.parse("2018-08-19"), "");
 //		 Calendar cal = Calendar.getInstance();
 //	        cal.setTime(df.parse("2018-08-19"));
 //	        System.out.println(cal.get(Calendar.DAY_OF_WEEK));
 //		java.sql.Date db = ;
-//		db.v
+		 System.out.println("hello rajesh");
+
 	}
 
 	public void sort1(int n, List<Integer> list) {
