@@ -45,7 +45,7 @@ public class GenericArray  {
 //	        cal.setTime(df.parse("2018-08-19"));
 //	        System.out.println(cal.get(Calendar.DAY_OF_WEEK));
 //		java.sql.Date db = ;
-		 System.out.println("hello rajesh");
+//		 System.out.println("hello rajesh");
 
 	}
 
