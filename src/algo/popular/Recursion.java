@@ -29,10 +29,11 @@ public class Recursion {
 		}
 		
 	}
-	public static void main(String[] args) {
-		Recursion rs = new Recursion();
-		rs.parenthesisGenerator(0);
+	public static void main(String... args) {
 
-	}
+		   // The comment below is not a typo.
+		   // \u000d System.out.println("Hello World!");
+		
+		}
 
 }
