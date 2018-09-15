@@ -27,26 +27,68 @@ public class GenericArray  {
 		}
 		
 	}
+	class Node{
+		int diff,val;
+		Node(int diff, int val){
+			this.diff=diff;
+			this.val=val;
+		}
+		
+	}
+	class SortArrayBasedOnAbsoluteDiff implements Comparator<Node>{
+
+	
+
+		@Override
+		public int compare(Node o1, Node o2) {
+			
+				return o1.diff-o2.diff;
+			
+		}
+		
+	}
 	public static void main(String[] args) throws ParseException {
-//		Scanner scan = new Scanner(System.in);
-//		int n = scan.nextInt();
+		Scanner scan = new Scanner(System.in);
+		int n = scan.nextInt();
 		GenericArray gc = new GenericArray();
+		int [] arr = new int [n];
 //		List<Integer> list = new ArrayList<>();
-//		for(int i=0;i<n;i++){
-//			int k = scan.nextInt();
-//			list.add(k);
-//		}
+		for(int i=0;i<n;i++){
+			int k = scan.nextInt();
+			arr[i]=k;
+		}
+		int x = scan.nextInt();
 //		System.out.println(list);
 //		gc.sort1(n,list);
 		
-		 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		 gc.getDateRangeUtil(df.parse("2018-08-19"), "");
+//		 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//		 gc.getDateRangeUtil(df.parse("2018-08-19"), "");
 //		 Calendar cal = Calendar.getInstance();
 //	        cal.setTime(df.parse("2018-08-19"));
 //	        System.out.println(cal.get(Calendar.DAY_OF_WEEK));
 //		java.sql.Date db = ;
 //		 System.out.println("hello rajesh");
+		
+		gc.sortBasedOnAbs(arr,x);
 
+	}
+
+	private void sortBasedOnAbs(int[] arr, int x) {
+		int n = arr.length;
+		Node [] nodeArr = new Node[n];
+		int j=0;
+		for(int i:arr){
+			nodeArr[j]=new Node(Math.abs(i-x), i);
+			j++;
+		}
+		j=0;
+		Arrays.sort(nodeArr, new SortArrayBasedOnAbsoluteDiff());
+		for(Node node:nodeArr){
+			arr[j]=node.val;
+			j++;
+		}
+		System.out.println(Arrays.toString(arr));
+		
 	}
 
 	public void sort1(int n, List<Integer> list) {
