@@ -107,6 +107,36 @@ public class LinkedList {
 		
 	}
 	
+//	public node reverseLinkedList(node head){
+//		if(head==null || head.next==null){
+//			return head;
+//		}else{
+//			node temp = reverseLinkedList(head.next);
+//			node result=temp;
+//			
+//			result.next
+//			
+//		}
+//	}
+	
+	
+	
+	public node reverseLinkedListIterative(node head){
+		if(head==null || head.next==null){
+			return head;
+		}else{
+			node prev=null;
+			node curr=head;
+			node nextone=null;
+			while(curr!=null){
+				nextone = curr.next;
+				curr.next=prev;
+				prev=curr;
+				curr=nextone;
+			}
+			return prev;
+		}
+	}
 	/**
 	 * Main method to test activities on LinkedList
 	 * @param args
@@ -123,7 +153,7 @@ public class LinkedList {
 		list.insertNodeAtEnd(9);
 		list.insertNodeAtEnd(41);
         list.printLinkedList(list.mergeSort(list.head));
-//      list.printLinkedList(list.head);
+        list.printLinkedList(list.reverseLinkedListIterative(list.head));
 
 	}
 
