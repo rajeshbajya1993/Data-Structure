@@ -47,7 +47,7 @@ public class LinkedList {
 	
 	
 	/**
-	 * recursively sort the linked list in two half 
+	 * recursively sort the linked list in two halves 
 	 * until length becomes one 
 	 * @param head
 	 * @return
