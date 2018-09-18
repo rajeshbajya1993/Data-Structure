@@ -5,17 +5,13 @@ import java.util.HashMap;
 public class LRUCache {
 
 	HashMap<Integer,node> hash;
-//	LinkedList<node> list;
 	node start;
 	node end;
 	int capacity;
-	int length;
 	
-	LRUCache(int cap){
+	public LRUCache(int cap){
 		hash = new HashMap<>();
-//		list = new LinkedList<>();
 		capacity=cap;
-		length=0;
 		start = new node(0, 0);
 		end = new node(0,0);
 		start.next=end;
@@ -36,15 +32,19 @@ public class LRUCache {
 		temp.next.prev=temp.prev;
 		
 	}
-//	public void addNode(int key,int value){
-//		
-//	}
+	/**
+	 * Insert element at the starting of the LinkedList
+	 * Keys cannot be duplicate
+	 * For duplicate keys, code needs to be changed slightly
+	 * @param key
+	 * @param value
+	 */
 	public void insert(int key,int value){
+		
+		
 		if(hash.size()==capacity){			
 			hash.remove(end.prev.value);
 			remove(end.prev);	
-//			capacity = capacity-1;;
-//			length--;
 		}
 			node temp = new node(key,value);
 			temp.next=start.next;
@@ -52,9 +52,14 @@ public class LRUCache {
 			start.next.prev=temp;
 			start.next=temp;
 			hash.put(key, temp);
-//			length=length+1;
 		
 	}
+	/**
+	 * If key is present, remove the key-node and insert a new node 
+	 * at the starting with same key-value as deleted key-node
+	 * @param key
+	 * @return
+	 */
 	public int get(int key){
 		if(!hash.containsKey(key)){
 			System.out.println("no such element...");
@@ -65,7 +70,6 @@ public class LRUCache {
 		hash.remove(key);
 		remove(temp);
 		insert(key, val);
-//		hash.put(key, value)
 		return val;
 	}
 	public void printLinkedList(){
