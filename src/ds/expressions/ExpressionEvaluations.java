@@ -5,7 +5,8 @@ public class ExpressionEvaluations {
 
 	public static void main(String[] args) {
 		ExpressionEvaluations es = new  ExpressionEvaluations();
-		es.infixToPostfix("a+b*(c^d-e)^(f+g*h)-i");
+		System.out.println(es.infixToPostfix("c/b+a"));
+		System.out.println(es.infixToPrefix("A*B+C/D"));
 
 	}
 	
@@ -27,7 +28,7 @@ public class ExpressionEvaluations {
 		return -1;
 	}
 	
-	public void infixToPostfix(String infix){
+	public String infixToPostfix(String infix){
 		Stack<Character> stak = new Stack<>();
 		String result="";
 		int n = infix.length();
@@ -48,10 +49,13 @@ public class ExpressionEvaluations {
 					stak.pop();
 				}
 			}else{
+				
 				while(!stak.isEmpty() && precedence(ch)<=precedence(stak.peek())){
 					result+=stak.pop();
 				}
 				stak.push(ch);
+				
+			
 			}		
 			
 			
@@ -60,8 +64,21 @@ public class ExpressionEvaluations {
 		while(!stak.isEmpty()){
 			result +=stak.pop();
 		}
-		System.out.println(result);
+		return result;
 		
+	}
+	
+	public String infixToPrefix(String infix){
+		//reverse infix string
+		//get postfix of reversed infix string
+		//reverse result from postfix 
+		return reverseString(infixToPostfix(reverseString(infix)));
+		
+	}
+
+	private String reverseString(String infix) {
+		StringBuilder sb  = new StringBuilder(infix);
+		return sb.reverse().toString();
 	}
 
 }
