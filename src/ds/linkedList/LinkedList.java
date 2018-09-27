@@ -137,6 +137,22 @@ public class LinkedList {
 			return prev;
 		}
 	}
+	
+
+	/**
+	 * Method to return Nth node from end
+	 * @param head
+	 * @param n
+	 */
+   public void printNthFromLast(node temp, int n)  
+     { 
+        int i = 0;  
+        if (temp == null) 
+        return; 
+        printNthFromLast(temp.next, n); 
+        if (i++ == n) 
+        System.out.println(temp.val);
+     }
 	/**
 	 * Main method to test activities on LinkedList
 	 * @param args
@@ -152,8 +168,9 @@ public class LinkedList {
 		list.insertNodeAtEnd(7);
 		list.insertNodeAtEnd(9);
 		list.insertNodeAtEnd(41);
-        list.printLinkedList(list.mergeSort(list.head));
-        list.printLinkedList(list.reverseLinkedListIterative(list.head));
+//        list.printLinkedList(list.mergeSort(list.head));
+//        list.printLinkedList(list.reverseLinkedListIterative(list.head));
+		  list.printNthFromLast(list.head, 4);
 
 	}
 
