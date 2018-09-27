@@ -31,9 +31,30 @@ public class Recursion {
 	}
 	public static void main(String... args) {
 
-		   // The comment below is not a typo.
-		   // \u000d System.out.println("Hello World!");
+		   Recursion rc = new Recursion();
+		   int [] coins = {5,1,2,7};
+		   int k = 9;
+		   rc.minimumCoins(coins, k);
 		
 		}
+	
+	public void minimumCoins(int [] coins, int k){
+		int n = coins.length;
+		int i=n-1;
+		int total = minimumCoins(coins,  n,  k,  i);
+		System.out.println(total);
+	}
+	private int minimumCoins(int[] coins, int n, int k, int i) {
+		if(i<0 || i>n-1){
+			return Integer.MAX_VALUE/2;
+		}else if(k<0){
+			return Integer.MAX_VALUE/2;
+		}else if(k==0){
+			return 0;
+		}
+		int a = 1+minimumCoins(coins, n, k-coins[i], i);
+		int b = minimumCoins(coins, n, k, i-1);
+		return Math.min(a, b);
+	}
 
 }
