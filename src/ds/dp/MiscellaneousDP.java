@@ -1,5 +1,7 @@
 package ds.dp;
 
+import java.util.HashMap;
+
 public class MiscellaneousDP {
 
 	
@@ -37,8 +39,64 @@ public class MiscellaneousDP {
 	public static void main(String[] args) {
 
 		MiscellaneousDP misc = new MiscellaneousDP();
-		misc.fibonacciNumber(7);
+//		misc.fibonacciNumber(7);
+//		misc.longestValidparenthesis("()()(()))((())");
+		misc.getLongestSubstringWithoutDuplicates("zefaebcdefa");
 
+	}
+	
+	public void longestValidparenthesis(String str){
+		int n = str.length();
+		int [] dp = new int[n];
+		int max=0;
+		
+		for(int i=0;i<n;i++){
+			if(str.charAt(i)==')'){
+				if(i-1>=0 && str.charAt(i-1)=='('){
+					dp[i]=i-2>=0?dp[i-2]+2:2;
+					
+				}else{
+					int subLength = dp[i-1];
+					int index = i-subLength-1;
+					if(index>=0 && str.charAt(index)=='('){
+
+						dp[i]=index-1>=0?subLength+2+dp[index-1]:subLength+2;
+						
+					}
+				}
+			}
+		
+			max = Math.max(dp[i], max);
+		}
+		System.out.println(max);
+		
+		
+	
+	}
+	public int getLongestSubstringWithoutDuplicates(String str){
+		int n;
+		if(str==null){
+			return 0;
+		}else if((n=str.length())<2){
+			return n;
+		}else{
+			//zefabcdefa j=3,i=9
+			int max=0;
+			HashMap<Character,Integer> hash = new HashMap<>();
+			for(int i=0,j=0;i<n;i++){
+				char ch = str.charAt(i);
+				if(hash.containsKey(ch)){
+					j=Math.max(j, hash.get(ch)+1);
+					max=Math.max(max, i-j+1);
+				}else{
+					max = Math.max(max, i-j+1);
+				}
+				 hash.put(ch,i);
+			}
+//			System.out.println(max);
+			return max;
+		}
+		
 	}
 
 }
