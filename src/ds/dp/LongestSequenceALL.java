@@ -5,8 +5,8 @@ public class LongestSequenceALL {
 	public static void main(String[] args) {
 		
 		LongestSequenceALL ls = new LongestSequenceALL();
-		int t =ls.longestSubsequenceDP("rajesh", "ytaeshty");
-		int l = ls.longestSubsequenceRecursion("rajesh", "ytaeshty");
+		int t =ls.longestSubsequenceDP("rajesh", "ytaehtyhjesh");
+		int l = ls.longestSubsequenceRecursion("rajesh", "ytaehtyhjesh");
 		System.out.println(t+" "+l);
 
 	}
@@ -45,7 +45,7 @@ public class LongestSequenceALL {
 		return longestSubsequenceRecursion(str1, str2, n1, n2);
 		
 	}
-	public int longestSubsequenceRecursion(String str1, String str2,int n1, int n2){
+	private int longestSubsequenceRecursion(String str1, String str2,int n1, int n2){
 		if(n1<=0 || n2<=0){
 			return 0;
 		}else{
@@ -58,4 +58,6 @@ public class LongestSequenceALL {
 			}
 		}
 	}
+    
+	
 }
