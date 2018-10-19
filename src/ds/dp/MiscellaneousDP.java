@@ -1,10 +1,28 @@
 package ds.dp;
 
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
 public class MiscellaneousDP {
 
 	
+	static class node{
+		int cost;
+		int length;
+		node(int c, int l){
+			cost=c;
+			length=l;
+		}
+	}
+	
+	class CompareRodes implements Comparator<node>{
+		
+		@Override
+		public int compare(node o1, node o2){
+			return o1.cost-o2.cost;
+		}
+	}
 	
 	public void fibonacciNumber(int n){
 		if(n<0){
@@ -99,4 +117,31 @@ public class MiscellaneousDP {
 		
 	}
 
+	
+	/**
+	 * Dont even have to use node,
+	 * just put frequencies in Queue
+	 * @param lrode
+	 * @param lcost
+	 */
+	public void ConnectNropesWithMinimumCost(int [] lrode, int [] lcost){
+		
+		PriorityQueue<node> pq = new PriorityQueue<>(new CompareRodes());
+		int n = lrode.length;
+		for(int i=0;i<n;i++){
+			node temp = new node(lcost[i],lrode[i]);
+			pq.add(temp);
+		}
+		while(pq.size()>1){
+			node p1 = pq.poll();
+			node p2 = pq.poll();
+			node temp = new node(p1.cost+p2.cost,p1.length+p2.length);
+			pq.add(temp);
+		}
+		node root = pq.poll();
+		System.out.println(root.length+" "+root.cost);
+		
+	}
+	
+	
 }
