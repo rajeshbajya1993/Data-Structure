@@ -1,11 +1,7 @@
 package ds.dp;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class MatrixDP {
@@ -26,19 +22,25 @@ public class MatrixDP {
 		FileInputStream fin = new FileInputStream("input.txt");
 		
 		
-		Scanner scan = new Scanner(fin);
+		Scanner scan = new Scanner(System.in);
 		int  row = scan.nextInt();
 		int column = scan.nextInt();
-		int [] [] matrix = new int[row][column];
+		char [] [] matrix = new char[row][column];
+//		for(int i=0;i<row;i++){
+//			for(int j=0;j<column;j++){
+//				int l = scan.nextInt();
+//				matrix[i][j]=l;
+//			}
+//		}
+		
+		MatrixDP mx = new MatrixDP();		
 		for(int i=0;i<row;i++){
-			for(int j=0;j<column;j++){
-				int l = scan.nextInt();
-				matrix[i][j]=l;
-			}
+			String str = scan.next();
+			matrix[i]=str.toCharArray();
 		}
-		MatrixDP mx = new MatrixDP();
-		System.out.println(mx.LargestSquare(matrix));
-
+		mx.printAllPath(matrix);
+		
+       scan.close();
 	}
 	/**
 	 * Maximum size square sub-matrix with all 1s
@@ -68,6 +70,36 @@ public class MatrixDP {
 //			System.out.println(Arrays.toString(arr));
 //		}
 		return max;
+		
+	}
+	
+	public void printAllPath(char [] [] matrix){
+		int row = matrix.length;
+		int column = matrix[0].length;
+//		char [] arr = new char[row+column-1];
+		printPath(matrix,row,column,0,0,"");
+	}
+	private void printPath(char[][] matrix, int row, int column, int i, int j, String result) {
+		if(i==row-1){
+			for(int k=j;k<column;k++){
+				result+=matrix[i][k];
+			}
+			System.out.println(result);
+			return;
+		}
+		if(j==column-1){
+			for(int k=i;k<row;k++){
+				result+=matrix[k][j];
+			}
+			System.out.println(result);
+			return;
+		}
+			
+				result+=matrix[i][j];
+				printPath(matrix, row, column, i+1, j, result);			
+				printPath(matrix, row, column, i, j+1, result);
+			
+	
 		
 	}
 
