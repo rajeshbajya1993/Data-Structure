@@ -32,7 +32,7 @@ public class Histogram {
 		public Integer pop(){
 			if(actual.isEmpty()){
 				throw new RuntimeException("Stack is Empty, "
-						+ "try to add some elements before remving.");
+						+ "try to add some elements before removing.");
 				
 			}else{
 				minstack.pop();

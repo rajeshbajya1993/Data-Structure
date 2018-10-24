@@ -59,9 +59,14 @@ public class MiscellaneousDP {
 		MiscellaneousDP misc = new MiscellaneousDP();
 //		misc.fibonacciNumber(7);
 //		misc.longestValidparenthesis("()()(()))((())");
-		misc.getLongestSubstringWithoutDuplicates("zefaebcdefa");
+//		misc.getLongestSubstringWithoutDuplicates("zefaebcdefa");
+		int [] arr = {-1, -20, -3};
+		misc.largestSumWithNoAdjacentElements(arr);
+		System.out.println(misc.largestSumWithNoAdjacentElements1(arr, arr.length));
 
 	}
+	
+	
 	
 	public void longestValidparenthesis(String str){
 		int n = str.length();
@@ -142,6 +147,54 @@ public class MiscellaneousDP {
 		System.out.println(root.length+" "+root.cost);
 		
 	}
+	
+	
+	
+	/**
+	 * Given an array of positive numbers, 
+	 * find the maximum sum of a subsequence with the constraint that no 2 numbers in the 
+	 * sequence should be adjacent in the array. So 3 2 7 10 should return 13 (sum of 3 and 10) or 
+	 * 3 2 5 10 7 should return 15 (sum of 3, 5 and 7).Answer the question in most efficient way.
+	 * 
+	 * https://www.geeksforgeeks.org/maximum-sum-such-that-no-two-elements-are-adjacent/
+	 * @param arr
+	 */
+	public void largestSumWithNoAdjacentElements(int [] arr){
+		int n = arr.length;
+		if(n<1) return;
+		int [] dp = new int[n];
+		dp[0]=arr[0];
+		dp[1]=Math.max(dp[0], arr[1]);
+		int max=Integer.MIN_VALUE;
+		for(int i=2;i<n;i++){
+			dp[i]=Math.max(dp[i-2]+arr[i], dp[i-1]);
+			//if 
+//			dp[i]=Math.max(dp[i-2]+arr[i], Math.max(dp[i-1],arr[i]));
+			max = Math.max(dp[i], max);
+		}
+		System.out.println(max);
+	}
+	
+	public int largestSumWithNoAdjacentElements1(int arr[], int n) 
+	    { 
+	        int incl = arr[0]; 
+	        int excl = 0; 
+	        int excl_new; 
+	        int i; 
+	  
+	        for (i = 1; i < n; i++) 
+	        { 
+	            /* current max excluding i */
+	            excl_new = (incl > excl) ? incl : excl; 
+	  
+	            /* current max including i */
+	            incl = excl + arr[i]; 
+	            excl = excl_new; 
+	        } 
+	  
+	        /* return max of incl and excl */
+	        return ((incl > excl) ? incl : excl); 
+	    } 
 	
 	
 }

@@ -48,32 +48,39 @@ public class GenericArray  {
 		
 	}
 	public static void main(String[] args) throws ParseException {
-		Scanner scan = new Scanner(System.in);
-		int n = scan.nextInt();
+//		Scanner scan = new Scanner(System.in);
+//		int n = scan.nextInt();
 		GenericArray gc = new GenericArray();
-		int [] arr = new int [n];
-//		List<Integer> list = new ArrayList<>();
-		for(int i=0;i<n;i++){
-			int k = scan.nextInt();
-			arr[i]=k;
-		}
-		int x = scan.nextInt();
+//		int [] arr = new int [n];
+////		List<Integer> list = new ArrayList<>();
+//		for(int i=0;i<n;i++){
+//			int k = scan.nextInt();
+//			arr[i]=k;
+//		}
+//		int x = scan.nextInt();
 //		System.out.println(list);
 //		gc.sort1(n,list);
 		
-//		 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//		 gc.getDateRangeUtil(df.parse("2018-08-19"), "");
+		 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		 gc.getDateRangeUtil(df.parse("2018-08-19"), "");
+		 System.out.println("GenericArray.main()");
 //		 Calendar cal = Calendar.getInstance();
 //	        cal.setTime(df.parse("2018-08-19"));
 //	        System.out.println(cal.get(Calendar.DAY_OF_WEEK));
 //		java.sql.Date db = ;
 //		 System.out.println("hello rajesh");
 		
-		gc.sortBasedOnAbs(arr,x);
+//		gc.sortBasedOnAbs(arr,x);
+		
+		String str = "Rajesh";
+				
+		
+		
 
 	}
 
 	private void sortBasedOnAbs(int[] arr, int x) {
+		System.out.println("GenericArray.sortBasedOnAbs()");
 		int n = arr.length;
 		Node [] nodeArr = new Node[n];
 		int j=0;

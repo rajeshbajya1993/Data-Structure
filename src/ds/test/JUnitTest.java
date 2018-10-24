@@ -1,9 +1,7 @@
 package ds.test;
 
 import org.junit.Test;
-import org.junit.Ignore;
 import static org.junit.Assert.assertEquals;
-import ds.array.*;
 public class JUnitTest {
 
 	@Test
