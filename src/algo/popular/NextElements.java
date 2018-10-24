@@ -4,8 +4,18 @@ import java.util.Arrays;
 
 public class NextElements {
 
+	static int count=0;
 	public static void main(String[] args) {
-		
+		StringBuilder sb = new StringBuilder();
+		try{
+			while (true) {
+				sb.append('a');
+				count++;
+//				System.out.println(count);
+			}
+		}catch(Exception e){
+			System.out.println(count);
+		}
 	}
 		
 	
