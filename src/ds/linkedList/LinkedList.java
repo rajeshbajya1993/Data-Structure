@@ -168,9 +168,10 @@ public class LinkedList {
 		list.insertNodeAtEnd(7);
 		list.insertNodeAtEnd(9);
 		list.insertNodeAtEnd(41);
-//        list.printLinkedList(list.mergeSort(list.head));
-//        list.printLinkedList(list.reverseLinkedListIterative(list.head));
-		  list.printNthFromLast(list.head, 4);
+		list.printLinkedList(list.head);
+        list.printLinkedList(list.mergeSort(list.head));
+//      list.printLinkedList(list.reverseLinkedListIterative(list.head));
+		list.printNthFromLast(list.head, 4);
 
 	}
 

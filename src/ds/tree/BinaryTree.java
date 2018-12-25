@@ -2,6 +2,7 @@ package ds.tree;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class BinaryTree {
 
@@ -72,6 +73,62 @@ public class BinaryTree {
 //		
 //	}
 
+	
+	/**
+	 * Given a binary tree, return the inorder traversal of its nodes' values.
+	 * 
+	 * Input: [1,null,2,3]
+	 * 
+             1
+              \
+               2
+               /
+              3
+
+       Output: [1,3,2]
+       
+	 *
+	 * https://leetcode.com/problems/binary-tree-inorder-traversal/description/
+	 * 
+	 * @param root 
+	 * @return
+	 */
+	public List<Integer> inorderTraversal(node root) {
+        List<Integer> list = new LinkedList<>();
+        Stack<node> stack = new Stack<>();
+        while (root != null || !stack.empty()) {
+            if (root != null) {  
+                stack.push(root);
+                root = root.left;  
+            } else {                              
+                System.out.print((stack.peek().val)+" ");
+                root = stack.pop().right;
+            }
+        }
+        return list;
+    }
+	public void iterativeInorderTraversal(node root){
+		Stack<node> q = new Stack<>();
+//		List<Integer> list = new ArrayList<>();
+		node curr = root;
+		while(curr!=null || !q.isEmpty()){
+			while(curr!=null){
+				q.push(curr);
+				curr = curr.left;
+			}
+				 curr = q.pop();
+				System.out.print(curr.val+" ");
+				curr = curr.right;
+//				q.push(curr);
+			
+		}
+	}
+	public void recursiveInorder(node root){
+		if(root==null)return;
+		recursiveInorder(root.left);
+		System.out.print(root.val+" ");
+		recursiveInorder(root.right);
+	}
 	public static void main(String[] args) {
 		BinaryTree bt = new BinaryTree();
 		node root = new node(4);
@@ -94,16 +151,14 @@ public class BinaryTree {
 //		System.out.println(result);
 //		System.out.println(length);
 //		bt.levelOrderTraversal(root);
-		search :
-		for(int i=0;i<10;i++){
-			for(int j=0;j<6;j++){
-				if(i*j==8){
-					break search;
-				}
-				System.out.printf("value of i= %d and j= %d %n",i,j);
-			}
-		}
+	
+//		bt.iterativeInorderTraversal(root);
+//		System.out.println();
+//		bt.recursiveInorder(root);
+//		System.out.println();
+//		bt.inorderTraversal(root);
 
 	}
+	
 
 }
