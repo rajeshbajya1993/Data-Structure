@@ -1,5 +1,9 @@
 package ds.tree;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
@@ -14,6 +18,27 @@ public class BinaryTree {
 			this.val=val;
 		}
 	}
+	
+	/**
+	 * https://www.geeksforgeeks.org/?p=662
+	 * @param node
+	 * @return
+	 */
+	node mirror(node node) 
+	    { 
+	        if (node == null) 
+	            return node; 
+	  
+	        /* do the subtrees */
+	        node left = mirror(node.left); 
+	        node right = mirror(node.right); 
+	  
+	        /* swap the left and right pointers */
+	        node.left = right; 
+	        node.right = left; 
+	  
+	        return node; 
+	    } 
 	
 	public node getLCA(node root, node p, node q){
 		if(root==null || root==p || root==q) return root;
@@ -129,16 +154,103 @@ public class BinaryTree {
 		System.out.print(root.val+" ");
 		recursiveInorder(root.right);
 	}
+	
+	/**
+	 * worked on it again
+	 * @param root
+	 */
+	public void Inordertest(node root){
+		if(root==null) return;
+		Stack<node> stak = new Stack<>();
+//		stak.push(root);
+		node current = root;
+		while(current!=null || !stak.isEmpty()){
+			while(current!=null){
+				stak.push(current);
+				current = current.left;
+			}
+			System.out.print(stak.peek().val+" ");
+			current = stak.pop().right;
+		}
+		
+	}
+	
+	public void PreOrdertest(node root){
+		if(root==null){
+			return;
+		}
+		Stack<node> stak = new Stack<>();
+		node current = root;
+		while(current!=null || !stak.isEmpty()){
+			if(current!=null){
+				stak.push(current);
+				System.out.print(current.val+" ");
+				current = current.left;
+			}
+			else{
+				current = stak.pop().right;
+				
+			}
+//			System.out.print(stak.peek().val+" ");
+//			current = stak.pop().right;
+		}
+	}
+	
+	public void levelOrder(node root){
+		List<Integer> list = new ArrayList<>();
+		levelOrderUtil(root,0,list);
+		System.out.println(list);
+	}
+	private void levelOrderUtil(node root, int i, List<Integer> list) {
+
+		if(root==null)return;
+		if(i==list.size()){
+			list.add(root.val);
+		}
+		levelOrderUtil(root.left, i+1, list);
+		levelOrderUtil(root.right, i+1, list);
+		
+	}
+	
+	public int lengthOfLongestSubstring(String s) {
+		
+        int n ;
+//        System.out.println(s.length());
+        if(s==null || (n=s.length())==0) return 0;
+        if(n==1)return 1;
+        HashMap<Character,Integer> hash = new HashMap<>();
+        int max=0;
+        System.out.println("n is"+n);
+        for(int i=0;i<n;i++){
+            char ch = s.charAt(i);
+            if(hash.containsKey(ch)){
+                int prev = hash.get(ch);
+                max = Math.max(max,i-prev);
+                
+            }
+            hash.put(ch,i);
+        }
+        if(hash.isEmpty()){
+        	System.out.println("came here");
+        	return n;
+        }
+        return max;
+    }
+
 	public static void main(String[] args) {
 		BinaryTree bt = new BinaryTree();
+		System.out.println(bt.lengthOfLongestSubstring("au"));
 		node root = new node(4);
 //		node p=root.left=new node(11);
 		root.left=new node(11);
 		root.right=new node(13);
+		root.right.right=new node(45);
+		root.right.right.right=new node(567);
 //		int result=0;
 //		node q=root.left.left = new node(32);
-		root.left.left = new node(32);
+//		root.left.left = new node(32);
 		root.left.right=new node(33);
+//		bt.levelOrder(root);
 //		node result = bt.getLCA(root, p, q);
 
 //		if(result!=null){
@@ -157,8 +269,16 @@ public class BinaryTree {
 //		bt.recursiveInorder(root);
 //		System.out.println();
 //		bt.inorderTraversal(root);
-
+//       bt.PreOrdertest(root);
+//		Deque<String> stack = new ArrayDeque<>();
+//		stack.push("Rajesh");
+//		stack.push("bajya");
+//		stack.push("class");
+//		System.out.println(stack.pop());
+//		System.out.println(stack);
 	}
+	
+	
 	
 
 }

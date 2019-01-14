@@ -3,21 +3,8 @@ package ds.sort;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class PopularSortingAlgos {
+public class PopularSortingAlgos implements Sortable{
 
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		int n = scan.nextInt();
-		int [] arr = new int[n];
-		for(int i=0;i<n;i++){
-			int k = scan.nextInt();
-			arr[i]=k;
-		}
-		PopularSortingAlgos ps = new PopularSortingAlgos();
-		ps.mergeSort(arr);
-		scan.close();
-
-	}
 	public void mergeSort(int [] arr){
 		int n = arr.length;
 		int l=0;
@@ -60,6 +47,12 @@ public class PopularSortingAlgos {
 		while(j<n2){
 			arr[k++]=right[j++];
 		}
+		
+	}
+	@Override
+	public void sort(int[] arr) {
+		System.out.println("sorting using mergesort....");
+		mergeSort(arr);
 		
 	}
 

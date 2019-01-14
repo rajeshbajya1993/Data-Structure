@@ -5,10 +5,63 @@ public class BinaryS {
 	public static void main(String[] args) {
     
 		BinaryS bs = new BinaryS();
-		int [] arr = {41,49,57,113,114,217,319,3311,4416};
-	  System.out.println(bs.search(arr, 4444));
+		int [] arr = {57,113,114,217,319,3311,4416,41,49};
+	  System.out.println(bs.searchInRotatedArray(arr, 217));
 		
 
+	}
+	
+	public int searchInRotatedArray(int [] arr, int target){
+		int n;
+		if(arr==null ||(n=arr.length)<1 ){
+			return -1;
+		}
+		int low = 0;
+		int high=n-1;
+		while(low<=high){
+			int mid = low+(high-low)/2;
+			if(arr[mid]==target){
+				return mid;
+			}
+			
+			
+			//if target falls into right half
+			else if(arr[high]>=arr[mid]){
+				//if highest element is less than target return -1
+				if(arr[high]<target || arr[mid]>target) return -1;
+				low = mid+1;
+				
+			}
+			else if(arr[mid]>=arr[high]){
+				//check left half, if it falls into left half
+				if(arr[mid]>=target && arr[low]<=target){
+					high = low-1;
+				}else{
+					low = mid+1;
+				}
+			}
+			
+			
+			//if target falls into left half
+//			else if(arr[mid]>=arr[low]){
+//				//check if it falls into left half
+//				if(arr[mid]<=target || arr[low]>=target) return -1;
+//				high = mid-1;
+//			}
+//			else if(arr[low]>=arr[mid]){
+//				if(arr[mid]>=target && arr[high]<=target){
+//					low = mid+1;
+//				}else{
+//					high = mid-1;
+//				}
+//			}
+			
+			else{
+				high = mid-1;
+			}
+		}
+		System.out.println(low+" "+high+" ");
+		return low;
 	}
 	
 	public int binarySearch(int [] arr,int target){
