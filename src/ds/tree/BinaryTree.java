@@ -236,46 +236,94 @@ public class BinaryTree {
         }
         return max;
     }
+	
+	/**
+	 * Size of a tree is, number of nodes in it
+	 * @param root
+	 * @return
+	 */
+	public int sizeofTree(node root){
+		if(root==null)return 0;
+		else{
+			int left = sizeofTree(root.left);
+			int right = sizeofTree(root.right);
+			return left+right+1;
+		}
+	}
+   /**
+    * Find level of a give node
+    * root is at level 0
+    * @param root
+    * @return
+    */
+	public int levelOfNode(node root,node target){
+//		if(root==null)return 0;
+		return levelOfNode(root,target,0);
+	}
+	
+	private int levelOfNode(node root, node target, int level) {
+	if(root==null)return 0;
+	else{
+		if(root.val==target.val){
+			return level;
+		}
+		int left = levelOfNode(root.left, target, level+1);
+		if(left==0){
+			return levelOfNode(root.right, target, level+1);
+		}
+		return left;
+	}
+	
+}
+	/**
+	 * https://www.geeksforgeeks.org/given-a-binary-tree-print-all-root-to-leaf-paths/
+	 * @param root
+	 */
+	public void printPaths(node root){
+		node [] paths = new node[100];
+		printPaths(root,paths,0,0);
+	}
+
+	private void printPaths(node root, node[] paths, int len, int rootToLeafSum) {
+		if(root==null){
+			return;
+		} 
+		
+		paths[len]=root;
+		rootToLeafSum+=root.val;
+		len++;
+		
+		if(root.left==null && root.right==null){
+			System.out.print("[ Total root to leaf sum for this path: "+rootToLeafSum+"] ");
+			printArrayUtil(paths,len);
+			
+		}else{
+			printPaths(root.left,paths,len,rootToLeafSum);
+			printPaths(root.right,paths,len,rootToLeafSum);
+		}
+		
+	}
+
+	private void printArrayUtil(node[] paths, int len) {
+		for(int i=0;i<len;i++){
+			System.out.print(paths[i].val+" ");
+		}
+		System.out.println();
+		
+	}
 
 	public static void main(String[] args) {
 		BinaryTree bt = new BinaryTree();
-		System.out.println(bt.lengthOfLongestSubstring("au"));
+		
 		node root = new node(4);
-//		node p=root.left=new node(11);
 		root.left=new node(11);
 		root.right=new node(13);
 		root.right.right=new node(45);
-		root.right.right.right=new node(567);
-//		int result=0;
-//		node q=root.left.left = new node(32);
-//		root.left.left = new node(32);
+		node temp=root.right.right.right=new node(567);
 		root.left.right=new node(33);
-//		bt.levelOrder(root);
-//		node result = bt.getLCA(root, p, q);
+		root.left.left = new node(67);
 
-//		if(result!=null){
-//			System.out.println(result.val);
-//		}else{
-//			System.out.println("null");
-//		}
-//		bt.getMaxSumPathLeafToLeaf(root);
-//		bt.getMaxLeaftoLeafLength(root);
-//		System.out.println(result);
-//		System.out.println(length);
-//		bt.levelOrderTraversal(root);
-	
-//		bt.iterativeInorderTraversal(root);
-//		System.out.println();
-//		bt.recursiveInorder(root);
-//		System.out.println();
-//		bt.inorderTraversal(root);
-//       bt.PreOrdertest(root);
-//		Deque<String> stack = new ArrayDeque<>();
-//		stack.push("Rajesh");
-//		stack.push("bajya");
-//		stack.push("class");
-//		System.out.println(stack.pop());
-//		System.out.println(stack);
+		bt.printPaths(root);
 	}
 	
 	
