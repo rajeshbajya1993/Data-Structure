@@ -1,8 +1,6 @@
 package ds.tree;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -319,7 +317,7 @@ public class BinaryTree {
 		root.left=new node(11);
 		root.right=new node(13);
 		root.right.right=new node(45);
-		node temp=root.right.right.right=new node(567);
+//		node temp=root.right.right.right=new node(567);
 		root.left.right=new node(33);
 		root.left.left = new node(67);
 
