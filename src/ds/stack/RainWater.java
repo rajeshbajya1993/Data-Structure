@@ -26,7 +26,7 @@ public class RainWater {
 		for(int i=0;i<n;i++){
 			int element = arr[i].y;
 			
-			//push if stack is empty, below two if conditions can be merged
+			//push, if stack is empty, below two if conditions can be merged
 			if(stack.isEmpty()){
 				stack.push(arr[i]);
 			}
