@@ -12,9 +12,10 @@ public class StackMisc {
 		stak.push(12);
 		stak.push(33);
 		stak.push(44);
-		System.out.println(stak);
+		stak.push(13);
+//		System.out.println(stak);
 		misc.reverseStack(stak);
-		System.out.println(stak);
+//		System.out.println(stak);
 
 	}
 	public void greaterElementInRight(int [] arr){
@@ -35,14 +36,24 @@ public class StackMisc {
 		}
 	}
 	
-	public void reverseStack(Stack<Integer> stak){
-		if(stak.isEmpty()){
-			return;
+	
+	public void reverseStack(Stack<Integer>stak){
+		if(stak.isEmpty())return;
+		else{
+			int t = stak.pop();
+			reverseStack(stak);
+			System.out.println(stak);
+			insertAtBottom(t,stak);
 		}
-		
-		int n = stak.pop();
-		reverseStack(stak);
-		stak.push(n);
+	}
+	private void insertAtBottom(int t, Stack<Integer> stak) {
+		if(stak.isEmpty()){
+			stak.push(t);
+		}else{
+			int l = stak.pop();
+			insertAtBottom(t, stak);
+			stak.push(l);
+		}
 		
 	}
 	
