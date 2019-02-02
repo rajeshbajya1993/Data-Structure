@@ -2,6 +2,13 @@ package ds.array.search;
 
 import java.util.Arrays;
 
+
+/**
+ * https://www.youtube.com/watch?v=LPFhl65R7ww
+ * https://github.com/mission-peace/interview/blob/master/src/com/interview/binarysearch/MedianOfTwoSortedArrayOfDifferentLength.java
+ * @author rbajya
+ *
+ */
 public class MedianOfTwoSortedArrays {
 
 	public double findMedianOfTwoSortedArrays(int [] input1, int [] input2){
@@ -10,11 +17,13 @@ public class MedianOfTwoSortedArrays {
 		if(n1>n2){
 			return findMedianOfTwoSortedArrays(input2, input1);
 		}
+		n1 = input1.length;
+		n2 = input2.length;
 		int low = 0;
 		int high = n1;
 		while(low<=high){
 			int partitionX = (low+high)/2;
-			int partitionY = (n1+n2)/2 -partitionX;
+			int partitionY = (n1+n2+1)/2 -partitionX;
 			
 			int max_left_x = partitionX==0?Integer.MIN_VALUE:input1[partitionX-1];
 			int min_right_x = partitionX==n1?Integer.MAX_VALUE:input1[partitionX];
@@ -25,7 +34,7 @@ public class MedianOfTwoSortedArrays {
 			//base condition
 			if(min_right_x >= max_left_y && max_left_x<= min_right_y){
 				if((n1+n2)%2==0){
-					return (double)Math.max(max_left_x, max_left_y)+Math.min(min_right_x, min_right_y)/2;
+					return (double)(Math.max(max_left_x, max_left_y)+Math.min(min_right_x, min_right_y))/2;
 				}else{
 					return Math.max(max_left_x, max_left_y);
 				}
@@ -64,9 +73,10 @@ public class MedianOfTwoSortedArrays {
 			return mergedArray[t1];
 		}
 	}
+	
 	public static void main(String[] args) {
 		int [] input1 = {4,9,14,17,20};
-		int [] input2 = {3,5,6,8,11,23,27};
+		int [] input2 = {3,5,6,8,12,23,27};
 
 		MedianOfTwoSortedArrays ms = new MedianOfTwoSortedArrays();
 		System.out.println(ms.FindMedianChecker(input1, input2));
