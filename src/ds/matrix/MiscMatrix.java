@@ -23,7 +23,7 @@ public class MiscMatrix {
 		int [] [] matrix = new int [n][m];
 		for(int i=0;i<n;i++){
 			for(int j=0;j<m;j++){
-				matrix[i][j]=((rand.nextInt(5000))&50)| 10;
+				matrix[i][j]=((rand.nextInt(5000))&50)| 10; //values from [10,50]
 				//matrix[i][j]=rand.nextInt(1) can also be used
 			}
 		}
@@ -53,24 +53,51 @@ public class MiscMatrix {
     	  boolean flag=true;
     	  while(flag){
     		  flag=false;
+    		  /**
+    		   * >>>>>>>
+    		   * -------
+    		   * -------
+    		   * -------
+    		   */
     		  for(int i=y1;i<=y2;i++){
     			  System.out.print(matrix[x1][i]+" ");
     			  count++;
     			  flag=true;
     		  }
     		  x1++;
+    		  
+    		  /**
+    		   * -------^
+    		   * -------^
+    		   * -------^
+    		   * -------^
+    		   */
     		  for(int i=x1;i<=x2;i++){
     			  System.out.print(matrix[i][y2]+" ");
     			  flag=true;
     			  count++;
     		  }
     		  y2--;
+    		  
+    		  /**
+    		   * -------
+    		   * -------
+    		   * -------
+    		   * <<<<<<<
+    		   */
     		  for(int i=y2;i>=y1;i--){
     			  System.out.print(matrix[x2][i]+" ");
     			  flag=true;
     			  count++;
     		  }
     		  x2--;
+    		  
+    		  /**
+    		   * ^-------
+    		   * ^-------
+    		   * ^-------
+    		   * ^-------
+    		   */
     		  for(int i=x2;i>=x1;i--){
     			  System.out.print(matrix[i][y1]+" ");
     			  flag=true;
