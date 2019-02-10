@@ -23,7 +23,8 @@ public class MiscMatrix {
 		int [] [] matrix = new int [n][m];
 		for(int i=0;i<n;i++){
 			for(int j=0;j<m;j++){
-				matrix[i][j]=((rand.nextInt(5000))&50)| 10; //values from [10,50]
+//				matrix[i][j]=((rand.nextInt(5000))&40)| 10; //values from [10,50]
+				matrix[i][j]=rand.nextInt(40)+10;
 				//matrix[i][j]=rand.nextInt(1) can also be used
 			}
 		}
