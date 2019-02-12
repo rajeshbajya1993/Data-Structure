@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Scanner;
 import java.util.Stack;
 
 public class BinaryTree {
@@ -38,6 +40,16 @@ public class BinaryTree {
 	        return node; 
 	    } 
 	
+	/**
+	 * This method assumes that both p and q are present in tree
+	 * if one of them is not present, the method will return other node
+	 * Ideally it should have returned null
+	 * getLCAModified()handle this case
+	 * @param root
+	 * @param p
+	 * @param q
+	 * @return
+	 */
 	public node getLCA(node root, node p, node q){
 		if(root==null || root==p || root==q) return root;
 		node l = getLCA(root.left, p, q);
@@ -51,6 +63,59 @@ public class BinaryTree {
 		}
 	}
 	
+	public node getLCAModified(node root, node p, node q){
+		
+		node temp=getLCAUtil(root,p,q);
+		if(flagP&flagQ){
+			return temp;
+		}
+		return null;
+	}
+	boolean flagP=false;
+	boolean flagQ = false;
+	
+	private node getLCAUtil(node root, node p, node q) {
+		if(root==null)
+			return null;
+		node temp=null;
+		if(root==p){
+			flagP=true;
+			temp= root;
+		}
+		if(root==q){
+			flagQ=true;
+			temp= root;
+		}
+		node l = getLCAUtil(root.left, p, q);
+		node r = getLCAUtil(root.right, p, q);
+		
+		if(temp!=null){
+			return temp;
+		}
+		if(l !=null && r!=null){		
+			
+			return root;
+		}
+		
+		
+		
+//		if(l!=null && flagQ){
+//			return l;
+//		}else if(r!=null && flagP){
+//			return r;
+//		}else{
+//			return null;
+//		}
+		
+		if(l!=null){
+			
+			return l;
+		}else{
+			return r;
+		}
+		
+	}
+
 	public int getMaxSumPathLeafToLeaf(node root){
 		if(root==null)return 0;
 		else {
@@ -311,17 +376,32 @@ public class BinaryTree {
 	}
 
 	public static void main(String[] args) {
+		
+		PriorityQueue<Integer>pq;
 		BinaryTree bt = new BinaryTree();
 		
 		node root = new node(4);
 		root.left=new node(11);
 		root.right=new node(13);
 		root.right.right=new node(45);
-//		node temp=root.right.right.right=new node(567);
-		root.left.right=new node(33);
+		node p=root.right.right.right=new node(567);
+		node q=root.left.right=new node(33);
 		root.left.left = new node(67);
 
-		bt.printPaths(root);
+		node result=bt.getLCA(root, p, q);
+	    if(result!=null){
+	    	System.out.println(result.val);
+	    }
+	    else{
+	    	System.out.println("null");
+	    }
+	    result = bt.getLCAModified(root, p, q);
+	    if(result!=null){
+	    	System.out.println(result.val);
+	    }
+	    else{
+	    	System.out.println("null");
+	    }
 	}
 	
 	
