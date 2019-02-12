@@ -6,7 +6,6 @@ import java.util.List;
 public class LeapYear {
 
 	public LeapYear() {
-		// TODO Auto-generated constructor stub
 	}
 	public static void main(String[] args) {
 		int start = 1800;
