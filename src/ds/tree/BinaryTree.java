@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.TreeMap;
 
 public class BinaryTree {
 
@@ -387,24 +389,61 @@ public class BinaryTree {
 		node p=root.right.right.right=new node(567);
 		node q=root.left.right=new node(33);
 		root.left.left = new node(67);
+		root.left.right = new node(20);
 
-		node result=bt.getLCA(root, p, q);
-	    if(result!=null){
-	    	System.out.println(result.val);
-	    }
-	    else{
-	    	System.out.println("null");
-	    }
-	    result = bt.getLCAModified(root, p, q);
-	    if(result!=null){
-	    	System.out.println(result.val);
-	    }
-	    else{
-	    	System.out.println("null");
-	    }
+//		node result=bt.getLCA(root, p, q);
+//	    if(result!=null){
+//	    	System.out.println(result.val);
+//	    }
+//	    else{
+//	    	System.out.println("null");
+//	    }
+//	    result = bt.getLCAModified(root, p, q);
+//	    if(result!=null){
+//	    	System.out.println(result.val);
+//	    }
+//	    else{
+//	    	System.out.println("null");
+//	    }
+		
+		bt.printTopView(root);
 	}
 	
-	
+	static class Pair{
+		int level;
+		node nod;
+		Pair(int level, node n){
+			this.level=level;
+			nod=n;
+		}
+	}
+	public void printTopView(node root){
+		TreeMap<Integer,Pair> map = new TreeMap<>();
+		int level=0;
+		int hd=0; //horizontal distance
+		printTopViewUtil(root,level,hd,map);
+		
+		for(Entry<Integer,Pair> entry: map.entrySet()){
+			Pair p = entry.getValue();
+			System.out.print(p.nod.val+" ");
+		}
+		System.out.println();
+	}
+
+	private void printTopViewUtil(node root, int level, int hd, TreeMap<Integer, Pair> map) {
+		if(root==null)return;
+		if(map.containsKey(hd)){
+			Pair p = map.get(hd);
+			if(p.level>level){
+				map.put(hd, new Pair(level,root));
+			}
+		}else{
+			map.put(hd, new Pair(level,root));
+		}
+		printTopViewUtil(root.left, level+1, hd-1, map);
+		printTopViewUtil(root.right, level+1, hd+1, map);
+		
+	}
 	
 
 }
