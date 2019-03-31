@@ -1,6 +1,7 @@
 package ds.array.search;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -58,6 +59,10 @@ public class BoyerMooreAlgo{
 		designBoyerMoore(text, pattern);
 		
 //		scan.close();
+		
+		String str = "rajesh.is.a.good.boy";
+		String [] arr = str.split("[.]");
+		System.out.println(Arrays.toString(arr));
 	}
   
   }

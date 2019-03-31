@@ -37,7 +37,10 @@ public class Recursion {
 //		   int [] coins = {5,1,2,7};
 //		   int k = 9;
 //		   rc.minimumCoins(coins, k);
-		   rc.generateString(4);
+//		   rc.generateString(4);
+		   
+		   String str = "123";
+		   rc.getAllAnagrams(str);
 		
 		}
 	
@@ -152,4 +155,23 @@ public class Recursion {
 	}
 
 
+	public void getAllAnagrams(String str){
+		int n;
+		if(str==null || (n=str.length())==0){
+			return;
+		}
+		String result="";
+		helper(str,result);
+	}
+	private void helper(String str, String result) {
+		if(str.equals("")){
+			System.out.println(result);
+			return;
+		}
+		for(int i=0;i<str.length();i++){
+			helper(str.substring(0, i)+str.substring(i+1),result+str.charAt(i));
+		}
+		
+	}
+	
 }

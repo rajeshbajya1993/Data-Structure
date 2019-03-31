@@ -82,9 +82,9 @@ public class BinaryS {
 		return -(low+1);
 	}
 	public void minInRotatedArray(int [] arr){
-		int n = arr.length;
-		int low = 0;
-		int high = n-1;		
+//		int n = arr.length;
+//		int low = 0;
+//		int high = n-1;		
 		
 	}
 	public int search(int[] arr, int target) 

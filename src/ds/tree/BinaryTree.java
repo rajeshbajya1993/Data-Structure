@@ -240,6 +240,45 @@ public class BinaryTree {
 		
 	}
 	
+	public void inorder_1(node root){
+//		if(root==null)return;
+		Stack<node> stack  = new Stack<>();
+		System.out.println();
+		while(!stack.isEmpty() || root!=null){
+			while(root!=null){
+				stack.push(root);
+				root = root.left;
+			}
+			node p = stack.pop();
+			System.out.print(p.val+" ");
+			root = p.right;
+		}
+	}
+	
+	public void preorderRecursion(node root){
+		if(root==null)return;
+		System.out.print(root.val+" ");
+		preorderRecursion(root.left);
+		preorderRecursion(root.right);
+	}
+	
+	public void preorder_1(node root){
+		if(root==null)return;
+		System.out.println();
+		Stack<node> stack = new Stack<>();
+		stack.push(root);
+		while(!stack.isEmpty()){
+			node popped = stack.pop();
+			System.out.print(popped.val+" ");
+			if(popped.right!=null){
+				stack.push(popped.right);
+				
+			}
+			if(popped.left!=null){
+				stack.push(popped.left);
+			}
+		}
+	}
 	public void PreOrdertest(node root){
 		if(root==null){
 			return;
@@ -406,7 +445,9 @@ public class BinaryTree {
 //	    	System.out.println("null");
 //	    }
 		
-		bt.printTopView(root);
+//		bt.printTopView(root);
+		bt.preorderRecursion(root);
+		bt.preorder_1(root);
 	}
 	
 	static class Pair{

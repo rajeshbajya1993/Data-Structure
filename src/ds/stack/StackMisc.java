@@ -14,8 +14,10 @@ public class StackMisc {
 		stak.push(44);
 		stak.push(13);
 //		System.out.println(stak);
-		misc.reverseStack(stak);
+//		misc.reverseStack(stak);
 //		System.out.println(stak);
+		
+		System.out.println(misc.convertToBinary(15));
 
 	}
 	public void greaterElementInRight(int [] arr){
@@ -53,6 +55,29 @@ public class StackMisc {
 			int l = stak.pop();
 			insertAtBottom(t, stak);
 			stak.push(l);
+		}
+		
+	}
+	
+	/**
+	 * Stack implementation of converting to binary numbers
+	 * @param n
+	 * @return
+	 */
+	public String convertToBinary(int n){
+		if(n<0){
+			return "This method supports only positive Integers";
+		}else{
+			String result="";
+			Stack<Integer> stack = new Stack<Integer>();
+			while(n>0){
+				stack.push(n%2);
+				n = n/2;
+			}
+			while(!stack.isEmpty()){
+				result = result+stack.pop();
+			}
+			return result;
 		}
 		
 	}

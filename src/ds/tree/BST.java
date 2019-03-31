@@ -114,27 +114,41 @@ public class BST {
 	public static void main(String[] args) {
 		BST bst = new BST();
 		node root=null;
-		node linkedList=null;
+//		node linkedList=null;
 		Random rand = new Random();
 		int [] arr = new int[10];
 		for(int i=0;i<4;i++){
 			 int n = rand.nextInt(100)+1;
 			 arr[i]=n;
-			 System.out.print(n+" ");
+//			 System.out.print(n+" ");
 			root = bst.insertNode(n, root);
 			
 		}
-		System.out.println();
-		bst.inorderTraversal(root);;
+//		System.out.println();
+//		bst.inorderTraversal(root);;
 //		bst.deleteNodeFromBST(arr[4], root);
 //		System.out.println();
 //		bst.inorderTraversal(root);
 //		root=bst.constructMinSumTree(root);
 		
-		System.out.println();
+//		System.out.println();
 		bst.inorderTraversal(root);
+		System.out.println();
+		bst.reverseInorder(root);
         
           
+	}
+	int count=0;
+	public void reverseInorder(node root){
+		if(root==null || count>=2)return;
+		reverseInorder(root.right);
+		count++;
+		if(count==2){
+			System.out.println(root.value+" ");
+			return;
+		}
+//		System.out.print(root.value+" ");
+		reverseInorder(root.left);
 	}
 	
 
