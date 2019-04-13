@@ -14,6 +14,15 @@ public class StringZigZag {
 		int n = str.length();
 		boolean flag=true;
 		
+		// if total is less than 2, it means there is no ZigZag, 
+		// print the string itself
+		if(total<2){
+			System.out.println(str);
+			return;
+		}
+		//calulate column length in matrix, max value would be n if total is 1
+		// if total is not huge, n can be used as column length, as it wont impact 
+		// performance much
 		while(true){
 			if(flag){
 				if(n-total <=0){
@@ -35,13 +44,14 @@ public class StringZigZag {
 				}
 			}
 		}
-//		System.out.println(col);
+  
 		char [] [] mat = new char[total][col];
 		int index=0;
 		n = str.length();
-		flag=true;
-		boolean flag1=true;
+		flag=true; 
+	
 		int i=0;int j=0;
+		// fill the matrix
 		while(index<n){
 			if(flag){
 				while(i<total && index<n){
@@ -49,6 +59,7 @@ public class StringZigZag {
 					i++;
 					index++;
 				}
+				// setup i,j,index,flag
 				i = total-2;
 				j++;
 				flag=false;
@@ -59,6 +70,8 @@ public class StringZigZag {
 					j++;
 					index++;
 				}
+				
+			  // setup i,j,index,flag
 				index--;
 				i++;
 				j--;
@@ -66,19 +79,20 @@ public class StringZigZag {
 				
 			}
 		}
-		String result="";
+		
 		for(char [] arr: mat){
 			for(char ch :arr){
-				if((int)ch !=0){
-					result=result+ch;
-				}
+				
+					System.out.print(ch+" ");
+				
 			}
+			System.out.println();
 			
 		}
-		System.out.println(result);
+		
 	}
 	public static void main(String[] args) {
 		StringZigZag s = new StringZigZag();
-		s.convertZigZag("AB", 1);
+		s.convertZigZag("PAYPALISHIRING", 3);
 	}
 }
