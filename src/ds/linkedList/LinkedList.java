@@ -169,10 +169,43 @@ public class LinkedList {
 		list.insertNodeAtEnd(9);
 		list.insertNodeAtEnd(41);
 		list.printLinkedList(list.head);
-        list.printLinkedList(list.mergeSort(list.head));
+//        list.printLinkedList(list.mergeSort(list.head));
 //      list.printLinkedList(list.reverseLinkedListIterative(list.head));
-		list.printNthFromLast(list.head, 4);
+//		list.printNthFromLast(list.head, 4);
+		list.checkIfLoop();
+		list.createLoop(3);
+		list.checkIfLoop();
+//		list.printLinkedList(list.head);
 
+	}
+	
+	public void createLoop(int at){
+		if(head==null)return;
+		node start = head;
+		node temp=null;
+		while(start.next!=null){
+			at--;
+			if(at==0){
+				temp=start;
+			}
+			start = start.next;
+		}
+		start.next = temp;
+	}
+	
+	public void checkIfLoop(){
+		if(head==null)return;
+		node slow = head;
+		node fast = head.next;
+		while(slow!=null && fast!=null && fast.next!=null){
+			if(slow==fast){
+				System.out.println("contains loop");
+				return;
+			}
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		System.out.println("Does not contain loop");
 	}
 
 }

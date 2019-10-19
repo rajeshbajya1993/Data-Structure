@@ -1,14 +1,35 @@
 package ds.array;
 
+import java.util.Arrays;
+
 public class BinaryS {
 
 	public static void main(String[] args) {
     
 		BinaryS bs = new BinaryS();
-		int [] arr = {57,113,114,217,319,3311,4416,41,49};
-	  System.out.println(bs.searchInRotatedArray(arr, 217));
+		int [] arr = {57,113,114,217,319,3311,4416};
+	  System.out.println(bs.demoBinarySearch(arr, 318));
+	  System.out.println(Arrays.binarySearch(arr, 318));
 		
 
+	}
+	
+	public int demoBinarySearch(int []  arr, int target){
+		int n = arr.length;
+		int s = 0,e=n-1;
+		while(s<=e){
+			int mid = s+(e-s)/2;
+			if(arr[mid]==target){
+				return mid;
+			}
+			else if(arr[mid]<target){
+				s = mid+1;
+			}
+			else{
+				e = mid-1;
+			}
+		}
+		return -(s+1);
 	}
 	
 	public int searchInRotatedArray(int [] arr, int target){
@@ -65,6 +86,7 @@ public class BinaryS {
 	}
 	
 	public int binarySearch(int [] arr,int target){
+		System.out.println("entring In binary search method......");
 		int n = arr.length;
 		int low = 0;
 		int high=n-1;
@@ -79,6 +101,7 @@ public class BinaryS {
 				return mid;
 			}
 		}
+		System.out.println("existing In binary search method......");
 		return -(low+1);
 	}
 	public void minInRotatedArray(int [] arr){
