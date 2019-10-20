@@ -25,13 +25,14 @@ public class JunitTesting {
 	@AfterClass
 	public static void tearDown(){
 		bs =null;
+		
 	}
 	
 	@Test
 	public void binarySearchTest(){
 		int [] arr = {1,4,6,8,11,20};
 		int expected = 4;
-	//	assertEquals(expected,bs.binarySearch(arr, 11));
+//		assertEquals(expected,bs.binarySearch(arr, 11));
 	}
 	@Test(expected=IndexOutOfBoundsException.class)
 	public void testIndexOutOfBoundsException() {
