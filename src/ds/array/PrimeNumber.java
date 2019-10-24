@@ -1,5 +1,6 @@
 package ds.array;
 
+import java.util.HashMap;
 import java.util.TreeMap;
 
 public class PrimeNumber {
@@ -7,10 +8,45 @@ public class PrimeNumber {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PrimeNumber pp = new PrimeNumber();
-		pp.generatePrimeNumbers(150,"ccc");
+//		pp.generatePrimeNumbers(150,"ccc");
+		System.out.println(pp.getString("abba"));
+		System.out.println(pp.getWordString("dog cat cat fish"));
 		
 		
 	}
+	String getWordString(String str) {
+		String result = "";
+		String[] ptr = str.split(" ");
+		int n = ptr.length;
+		 HashMap<String,Integer> hash = new HashMap<>();
+		 int j = 0;
+		for(int i=0;i<n;i++) {
+			if(hash.containsKey(ptr[i])) {
+				result +=hash.get(ptr[i]);
+			}else {
+				result +=j;
+            	hash.put(ptr[i], j);
+            	j++;
+			}
+		}
+		return result;
+	}
+	String getString(String str){
+        int n = str.length();
+        int  j = 0;
+        String result="";
+        HashMap<Character,Integer> hash = new HashMap<>();
+        for(int i=0;i<n;i++){
+            if(hash.containsKey(str.charAt(i))) {
+            	result +=hash.get(str.charAt(i));
+            }else {
+            	result +=j;
+            	hash.put(str.charAt(i), j);
+            	j++;
+            }
+        }
+        return result;
+    }
 	
 	//Sieve analysis
 	public void generatePrimeNumbers(int n,String str) {
