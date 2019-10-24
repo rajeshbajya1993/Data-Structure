@@ -17,9 +17,9 @@ public class DutchNationalFlag {
 		while(mid<=high){
 			switch(arr[mid]){
 			case 0:
-				int temp = arr[mid];
+//				int temp = arr[mid];
 				int temp1 = arr[low];
-				if(temp!=temp1){
+				if(0!=temp1){
 					arr[low]=arr[mid];
 					arr[mid]=temp1;
 				}
@@ -30,9 +30,9 @@ public class DutchNationalFlag {
 				mid++;
 				break;
 			case 2:
-				int t1 = arr[mid];
+//				int t1 = arr[mid];
 				int t2 = arr[high];
-				if(t1!=t2){
+				if(2!=t2){
 					arr[high]=arr[mid];
 					arr[mid]=t2;
 				}

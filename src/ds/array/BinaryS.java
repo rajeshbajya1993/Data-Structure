@@ -7,9 +7,10 @@ public class BinaryS {
 	public static void main(String[] args) {
     
 		BinaryS bs = new BinaryS();
-		int [] arr = {57,113,114,217,319,3311,4416};
-	  System.out.println(bs.demoBinarySearch(arr, 318));
-	  System.out.println(Arrays.binarySearch(arr, 318));
+		int [] arr = {57,113,113,114,217,319,3311,4416};
+//	  System.out.println(bs.demoBinarySearch(arr, 318));
+//	  System.out.println(Arrays.binarySearch(arr, 318));
+		bs.firstAndLastOccurance(arr, 113);
 		
 
 	}
@@ -148,5 +149,31 @@ public class BinaryS {
 		}
 		
 	}
+    public void firstAndLastOccurance(int [] arr, int target) {
+    	int low = 0;
+    	int n = arr.length;
+    	int high = n-1;
+    	while(low<high) {
+    		int mid = low+(high-low)/2;
+    		if(arr[mid]<target) {
+    			low = mid+1;
+    		}else {
+    			high = mid;
+    		}
+    	}
+    	System.out.print(low);
+    	high = n-1;
+    	while(low<high) {
+    		int mid = (high+low)/2+1;
+    		if(arr[mid]>target) {
+    			high = mid-1;
+    		}else {
+    			low = mid;
+    		}
+    	}
+    	System.out.print(""+" "+low);
+    	System.out.println();
+    	
+    }
 
 }
